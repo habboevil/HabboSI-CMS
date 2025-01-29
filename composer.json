@@ -1,0 +1,132 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The skeleton application for the Laravel framework.",
+    "keywords": ["laravel", "framework"],
+    "license": "MIT",
+    "repositories": {
+        "laravel/nova": {
+            "type": "vcs",
+            "url": "https://bitbucket.org/atomcms/housekeeping.git"
+        },
+        "atomcms/installation": {
+            "type": "vcs",
+            "url": "git@github.com:atom-retros/installation.git"
+        },
+        "atomcms/rcon": {
+            "type": "vcs",
+            "url": "git@github.com:atom-retros/rcon.git"
+        },
+        "atomcms/voting": {
+            "type": "vcs",
+            "url": "git@github.com:atom-retros/voting.git"
+        },
+        "atomcms/core": {
+            "type": "vcs",
+            "url": "git@github.com:atom-retros/core.git"
+        },
+        "atomcms/theme": {
+            "type": "vcs",
+            "url": "https://github.com/HabboSIHotel/HabboSI-Atom-Control.git"
+        },
+        "atomcms/locale": {
+            "type": "vcs",
+            "url": "git@github.com:atom-retros/locale.git"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "ext-sockets": "*",
+        "atomcms/core": "dev-main",
+        "atomcms/installation": "dev-main",
+        "atomcms/locale": "dev-main",
+        "atomcms/rcon": "dev-main",
+        "atomcms/theme": "dev-main",
+        "atomcms/voting": "dev-main",
+        "doctrine/dbal": "^3.5",
+        "guzzlehttp/guzzle": "^7.2",
+        "illuminate/support": "^11.0",
+        "inertiajs/inertia-laravel": "^1.3",
+        "jacobfitzp/nova-tinymce": "^1.0",
+        "laravel/framework": "^11.0",
+        "laravel/nova": "dev-main",
+        "laravel/prompts": "^0.1.24",
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^2.9",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "livewire/livewire": "^3.5",
+        "livewire/volt": "^1.6",
+        "outl1ne/nova-multiselect-field": "^4.4.0",
+        "qirolab/laravel-themer": "^2.0",
+        "ryangjchandler/laravel-cloudflare-turnstile": "^1.1",
+        "sentry/sentry-laravel": "^4.7",
+        "spatie/array-to-xml": "^3.3",
+        "spatie/laravel-activitylog": "^4.8",
+        "spatie/laravel-discord-alerts": "^1.5",
+        "srmklive/paypal": "^3.0"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "v3.12",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/pint": "^v1.14",
+        "laravel/sail": "^1.29",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^8.1",
+        "pestphp/pest": "^2.19.2",
+        "pestphp/pest-plugin-laravel": "^2.2",
+        "phpunit/phpunit": "^10.3.5",
+        "spatie/laravel-ignition": "^2.0",
+        "spatie/laravel-ray": "^1.32"
+    },
+    "provide": {
+        "laravel/nova": "4.27.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        },
+        "files": [
+            "app/cloudflare.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
